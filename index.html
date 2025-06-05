@@ -638,7 +638,84 @@ body {
     padding: 0.25rem 0.5rem;
     border-radius: 1rem;
     box-shadow: 0 0 5px #ff3b30;
-} 
+}
+
+@media screen and (max-width: 768px) {
+    .app-skeleton {
+        padding: 0 0.5rem;
+    }
+
+    .app-header {
+        padding: 0.5rem 0;
+    }
+
+    .logo-button__button {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+
+    .connect-wallet__button {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+
+    .nav__list {
+        gap: 1rem;
+    }
+
+    .header-action-icon {
+        font-size: 1rem;
+    }
+
+    .header-action-badge {
+        min-width: 1rem;
+        height: 1rem;
+        font-size: 0.625rem;
+    }
+
+    .app-main {
+        margin-bottom: calc(5rem + 1rem);
+        padding: 0.5rem;
+    }
+
+    .bottom-nav {
+        padding: 0.5rem;
+    }
+
+    .bottom-nav__list {
+        justify-content: space-around;
+    }
+
+    .bottom-nav__link {
+        flex-direction: column;
+        font-size: 0.75rem;
+    }
+
+    .bottom-nav__icon {
+        font-size: 1.25rem;
+        margin-bottom: 0.25rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo-button__button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .connect-wallet__button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .nav__link {
+        font-size: 0.9rem;
+    }
+
+    .header-action-icon {
+        font-size: 0.9rem;
+    }
+}
 </style>
 </head>
 <body>
