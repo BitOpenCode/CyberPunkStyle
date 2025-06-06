@@ -7,716 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-<style>
-* {
-    box-sizing: border-box;
-    position: relative;
-}
 
-html,
-body {
-    --colors-bg--300: #1e181e;
-    --colors-bg--500: #191a1e;
-    --colors-primary--200: #ffb347;
-    --colors-primary--300: #ff9f1c;
-    --colors-primary--500: #ff8c00;
-    --colors-primary--600: #cc7000;
-    --colors-primary--700: #995400;
-    --colors-primary--800: #663800;
-    --colors-primary--900: #331c00;
-    --colors-secondary--500: #ff8c00;
-    --colors-secondary--900: #995400;
-    --colors-tertiary--500: #ffd700;
-    --colors-on_bg--500: var(--colors-primary--500);
-    --colors-on_tertiary--500: var(--colors-bg--300);
-    --colors-on_primary--500: var(--colors-primary--200);
-    --colors-active--500: #ff8c00;
-    --fonts-primary: "Rajdhani", sans-serif;
-    --fonts-secondary: "VT323", monospace;
-    --ui-glow: 0 0 5px var(--colors-primary--500);
-    --ui-glow-borders--500: 0 0 3px var(--colors-primary--500);
-    --ui-glow-color: currentcolor;
-    --ui-glow-text: -9px -6px 40px var(--ui-glow-color);
-    --ui-glow-text--dimmed: -9px -6px 40px var(--ui-glow-color);
-    --ui-elevation--1: 2px 2px 0 rgba(0, 0, 0, 0.8);
-    --ui-notch-amount: 1rem;
-    --ui-notch-hypotenuse: 22.627416px;
-    --ui-notch-path: polygon(
-        0 0,
-        100% 0,
-        100% calc(100% - var(--ui-notch-amount) + 2px),
-        calc(100% - var(--ui-notch-amount) + 2px) 100%,
-        0 100%
-    );
-
-    background-color: var(--colors-bg--500);
-    background-image: radial-gradient(
-        ellipse at 33% 10%,
-        #663800 0%,
-        transparent 75%
-    );
-    background-repeat: no-repeat;
-    color: var(--colors-on_bg--500);
-    font-family: var(--fonts-primary);
-    font-size: 100%;
-    line-height: 1.4;
-    margin: 0;
-    min-height: 100vh;
-}
-
-.app-skeleton {
-    padding: 0 1rem;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.app-header {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    padding: 1rem 0 0.5rem 0;
-    position: relative;
-}
-
-.app-header::after {
-    background-color: var(--colors-primary--500);
-    box-shadow: var(--ui-glow);
-    bottom: 0;
-    content: "";
-    height: 2px;
-    position: absolute;
-    left: 0;
-    width: 100%;
-}
-
-.logo-button {
-    position: absolute;
-    left: 0;
-}
-
-.logo-button__button {
-    background-color: var(--colors-primary--800);
-    border: 2px solid var(--colors-primary--500);
-    color: var(--colors-primary--200);
-    padding: 0.75rem 1.5rem;
-    font-family: var(--fonts-secondary);
-    font-size: 1.25rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: var(--ui-glow);
-    border-radius: 4px;
-    clip-path: var(--ui-notch-path);
-}
-
-.logo-button__button:hover {
-    background-color: var(--colors-primary--700);
-    color: var(--colors-primary--200);
-    box-shadow: 0 0 15px var(--colors-primary--500);
-}
-
-.logo-button__button::before {
-    background-color: var(--colors-primary--500);
-    bottom: 5px;
-    content: "";
-    display: block;
-    height: 3px;
-    position: absolute;
-    right: -6px;
-    top: auto;
-    transform: rotate(-45deg);
-    width: var(--ui-notch-hypotenuse);
-    z-index: 100;
-}
-
-.connect-wallet {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-}
-
-.connect-wallet__button {
-    background-color: var(--colors-primary--800);
-    border: 2px solid var(--colors-primary--500);
-    color: var(--colors-primary--200);
-    padding: 0.75rem 1.5rem;
-    font-family: var(--fonts-secondary);
-    font-size: 1.25rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: var(--ui-glow);
-    border-radius: 4px;
-}
-
-.connect-wallet__button:hover {
-    background-color: var(--colors-primary--700);
-    color: var(--colors-primary--200);
-    box-shadow: 0 0 15px var(--colors-primary--500);
-}
-
-.connect-wallet__button i {
-    margin-right: 0.5rem;
-}
-
-.app-main {
-    flex: 1;
-    overflow-y: auto;
-    padding-bottom: 0;
-    padding: 1rem;
-    background-color: var(--colors-bg--300);
-    border: 1px solid var(--colors-primary--600);
-    border-radius: 4px;
-    box-shadow: var(--ui-glow);
-    margin-bottom: calc(4rem + 1rem);
-    min-height: 200px;
-}
-
-.nav__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 2rem;
-}
-
-.nav__link {
-    color: var(--colors-primary--500);
-    text-decoration: none;
-    text-transform: uppercase;
-    text-shadow: var(--ui-glow-text);
-    transition: color 0.3s ease;
-}
-
-.nav__link:hover {
-    color: var(--colors-primary--200);
-}
-
-.nav__link--active {
-    color: var(--colors-secondary--500);
-    font-size: 1.25rem;
-}
-
-.header-actions {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    margin-left: auto;
-}
-
-.header-action-link {
-    color: var(--colors-primary--500);
-    text-decoration: none;
-    position: relative;
-    padding: 0.5rem;
-    transition: color 0.3s ease;
-}
-
-.header-action-link:hover {
-    color: var(--colors-primary--200);
-}
-
-.header-action-icon {
-    font-size: 1.25rem;
-}
-
-.header-action-badge {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: #ff3b30;
-    color: var(--colors-bg--300);
-    font-size: 0.75rem;
-    font-weight: bold;
-    min-width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 5px #ff3b30;
-}
-
-.bottom-nav {
-    background-color: var(--colors-bg--300);
-    border-top: 2px solid var(--colors-primary--600);
-    padding: 0.5rem 0;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
-}
-
-.bottom-nav__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-around;
-}
-
-.bottom-nav__actions {
-    display: flex;
-    gap: 1rem;
-    margin-left: 1rem;
-}
-
-.bottom-nav__action-link {
-    color: var(--colors-primary--500);
-    text-decoration: none;
-    position: relative;
-    padding: 0.5rem;
-    transition: color 0.3s ease;
-}
-
-.bottom-nav__action-link:hover {
-    color: var(--colors-primary--200);
-}
-
-.bottom-nav__action-icon {
-    font-size: 1.25rem;
-}
-
-.bottom-nav__action-badge {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: var(--colors-primary--500);
-    color: var(--colors-bg--300);
-    font-size: 0.75rem;
-    font-weight: bold;
-    min-width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--ui-glow);
-}
-
-.bottom-nav__link {
-    color: var(--colors-primary--500);
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0.5rem;
-    transition: color 0.3s ease;
-}
-
-.bottom-nav__link:hover {
-    color: var(--colors-primary--200);
-}
-
-.bottom-nav__link--active {
-    color: var(--colors-secondary--500);
-}
-
-.bottom-nav__icon {
-    font-size: 1.5rem;
-    margin-bottom: 0.25rem;
-}
-
-.bottom-nav__text {
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.game-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 400px;
-    position: relative;
-}
-
-.stats-bar {
-    background-color: var(--colors-bg--300);
-    border: 1px solid var(--colors-primary--600);
-    border-radius: 4px;
-    padding: 0.75rem 1rem;
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: var(--ui-glow);
-}
-
-.stats-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.stats-icon {
-    font-size: 1.25rem;
-    color: var(--colors-primary--500);
-    text-shadow: var(--ui-glow-text);
-}
-
-.stats-value {
-    font-family: var(--fonts-secondary);
-    font-size: 1.1rem;
-    color: var(--colors-primary--200);
-    text-shadow: var(--ui-glow-text--dimmed);
-}
-
-.stats-item:first-child .stats-icon {
-    color: #f7931a;
-}
-
-.stats-item:nth-child(2) .stats-icon {
-    color: var(--colors-tertiary--500);
-}
-
-.stats-item:last-child .stats-icon {
-    color: var(--colors-secondary--500);
-}
-
-.game-buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-    padding: 1rem;
-    height: 100%;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-}
-
-.game-buttons__left,
-.game-buttons__right {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    pointer-events: auto;
-}
-
-.game-buttons__left {
-    margin-left: 1rem;
-}
-
-.game-buttons__right {
-    margin-right: 1rem;
-}
-
-@keyframes cyberpunkGlow {
-    0% {
-        border-color: var(--colors-primary--500);
-        box-shadow: 0 0 5px var(--colors-primary--500),
-                    0 0 10px var(--colors-primary--500);
-    }
-    25% {
-        border-color: var(--colors-secondary--500);
-        box-shadow: 0 0 5px var(--colors-secondary--500),
-                    0 0 10px var(--colors-secondary--500);
-    }
-    50% {
-        border-color: var(--colors-primary--500);
-        box-shadow: 0 0 5px var(--colors-primary--500),
-                    0 0 10px var(--colors-primary--500);
-    }
-    75% {
-        border-color: var(--colors-secondary--500);
-        box-shadow: 0 0 5px var(--colors-secondary--500),
-                    0 0 10px var(--colors-secondary--500);
-    }
-    100% {
-        border-color: var(--colors-primary--500);
-        box-shadow: 0 0 5px var(--colors-primary--500),
-                    0 0 10px var(--colors-primary--500);
-    }
-}
-
-.game-button {
-    background-color: var(--colors-bg--300);
-    border: 2px solid var(--colors-primary--600);
-    color: var(--colors-primary--200);
-    padding: 0.5rem;
-    font-family: var(--fonts-secondary);
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-    clip-path: var(--ui-notch-path);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.3rem;
-    width: 70px;
-    height: 70px;
-    text-align: center;
-    animation: cyberpunkGlow 4s infinite;
-}
-
-.game-button:hover {
-    animation: none;
-    background-color: var(--colors-primary--700);
-    color: var(--colors-primary--200);
-    box-shadow: 0 0 15px var(--colors-primary--500);
-}
-
-.game-button::before {
-    background-color: var(--colors-primary--500);
-    bottom: 5px;
-    content: "";
-    display: block;
-    height: 3px;
-    position: absolute;
-    right: -6px;
-    top: auto;
-    transform: rotate(-45deg);
-    width: var(--ui-notch-hypotenuse);
-    z-index: 100;
-}
-
-.game-button--primary {
-    background-color: var(--colors-primary--800);
-    border-color: var(--colors-primary--500);
-}
-
-.game-button--secondary {
-    background-color: var(--colors-bg--300);
-    border-color: var(--colors-secondary--500);
-    color: var(--colors-secondary--500);
-}
-
-.game-button--secondary:hover {
-    background-color: var(--colors-secondary--900);
-    color: var(--colors-secondary--500);
-    box-shadow: 0 0 15px var(--colors-secondary--500);
-}
-
-.game-button i {
-    font-size: 1.2rem;
-    margin-bottom: 0.2rem;
-    color: var(--colors-primary--200);
-}
-
-.game-button:hover i {
-    color: var(--colors-primary--500);
-    text-shadow: 0 0 10px var(--colors-primary--500);
-}
-
-.start-mining-button {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--colors-primary--800);
-    border: 2px solid var(--colors-primary--500);
-    color: var(--colors-primary--200);
-    padding: 0.75rem 3rem;
-    font-family: var(--fonts-secondary);
-    font-size: 1.25rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-    clip-path: var(--ui-notch-path);
-    z-index: 100;
-    min-width: 300px;
-}
-
-.start-mining-button:hover {
-    background-color: var(--colors-primary--700);
-    color: var(--colors-primary--200);
-    border-color: #0066ff;
-    text-shadow: 0 0 5px #0066ff;
-}
-
-.start-mining-button::before {
-    background-color: var(--colors-primary--500);
-    bottom: 5px;
-    content: "";
-    display: block;
-    height: 3px;
-    position: absolute;
-    right: -6px;
-    top: auto;
-    transform: rotate(-45deg);
-    width: var(--ui-notch-hypotenuse);
-    z-index: 100;
-}
-
-.circular-buttons {
-    position: absolute;
-    bottom: 7rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 1.5rem;
-    z-index: 100;
-}
-
-.circular-button {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: var(--colors-primary--800);
-    border: 2px solid var(--colors-primary--500);
-    color: var(--colors-primary--200);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--fonts-secondary);
-    font-size: 0.8rem;
-    text-align: center;
-    box-shadow: var(--ui-glow);
-    transition: all 0.3s ease;
-}
-
-.circular-button:hover {
-    background-color: var(--colors-primary--700);
-    box-shadow: 0 0 15px var(--colors-primary--500);
-}
-
-.circular-button i {
-    font-size: 1.2rem;
-    margin-bottom: 0.3rem;
-}
-
-.circular-button span {
-    padding: 0 0.3rem;
-}
-
-.timer {
-    position: absolute;
-    bottom: 4.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: var(--fonts-secondary);
-    font-size: 1.5rem;
-    color: var(--colors-primary--200);
-    text-shadow: 0 0 10px var(--colors-primary--500);
-    z-index: 100;
-}
-
-.header-right {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-
-.header-action {
-    background: none;
-    border: none;
-    color: var(--colors-primary--200);
-    font-size: 1.25rem;
-    cursor: pointer;
-    position: relative;
-    padding: 0.5rem;
-    transition: all 0.3s ease;
-}
-
-.header-action:hover {
-    color: var(--colors-primary--500);
-    text-shadow: 0 0 10px var(--colors-primary--500);
-}
-
-.header-action-badge {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: #ff3b30;
-    color: white;
-    font-size: 0.75rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 0 5px #ff3b30;
-}
-
-@media screen and (max-width: 768px) {
-    .app-skeleton {
-        padding: 0 0.5rem;
-    }
-
-    .app-header {
-        padding: 0.5rem 0;
-    }
-
-    .logo-button__button {
-        padding: 0.5rem 1rem;
-        font-size: 1rem;
-    }
-
-    .connect-wallet__button {
-        padding: 0.5rem 1rem;
-        font-size: 1rem;
-    }
-
-    .nav__list {
-        gap: 1rem;
-    }
-
-    .header-action-icon {
-        font-size: 1rem;
-    }
-
-    .header-action-badge {
-        min-width: 1rem;
-        height: 1rem;
-        font-size: 0.625rem;
-    }
-
-    .app-main {
-        margin-bottom: calc(5rem + 1rem);
-        padding: 0.5rem;
-    }
-
-    .bottom-nav {
-        padding: 0.5rem;
-    }
-
-    .bottom-nav__list {
-        justify-content: space-around;
-    }
-
-    .bottom-nav__link {
-        flex-direction: column;
-        font-size: 0.75rem;
-    }
-
-    .bottom-nav__icon {
-        font-size: 1.25rem;
-        margin-bottom: 0.25rem;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .logo-button__button {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.9rem;
-    }
-
-    .connect-wallet__button {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.9rem;
-    }
-
-    .nav__link {
-        font-size: 0.9rem;
-    }
-
-    .header-action-icon {
-        font-size: 0.9rem;
-    }
-}
-</style>
 </head>
 <body>
     <div class="app-skeleton">
@@ -764,7 +55,7 @@ body {
                     <span>200kw/1000kw</span>
                 </div>
                 <div class="circular-button">
-                    <span>234Th/1000Th</span>
+                    <span>234Th</span>
                 </div>
                 <div class="circular-button">
                     <i class="fas fa-chart-line"></i>
@@ -774,6 +65,10 @@ body {
             <div class="timer">5:33:10</div>
             <button class="start-mining-button">Start Mining</button>
             <div class="game-content">
+                <div class="asic-miner">
+                    <div class="asic-miner__image"></div>
+                    <div class="asic-miner__text">ASIC Miner</div>
+                </div>
                 <div class="game-buttons">
                     <div class="game-buttons__left">
                         <button class="game-button game-button--primary">
@@ -834,5 +129,432 @@ body {
             </ul>
         </nav>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let startMiningButton = document.querySelector('.start-mining-button');
+            let timerDisplay = document.querySelector('.timer');
+            let btcBalanceDisplay = document.querySelector('.stats-item:first-child .stats-value');
+            let energyDisplay = document.querySelector('.circular-button:first-child span');
+
+            let miningInterval;
+            const miningDuration = 1 * 60; // 1 minute in seconds
+            const profitAmount = 0.0001287;
+            const energyCostPerSession = 3.51; // Energy cost for one mining session
+            let timeRemaining = miningDuration;
+
+            function formatTime(seconds) {
+                const h = Math.floor(seconds / 3600);
+                const m = Math.floor((seconds % 3600) / 60);
+                const s = seconds % 60;
+                return `${h}:${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+            }
+
+            function updateTimerDisplay() {
+                if (timerDisplay) {
+                     timerDisplay.textContent = formatTime(timeRemaining);
+                }
+            }
+
+            function addProfit() {
+                // Re-select btcBalanceDisplay before using it
+                const currentBtcBalanceDisplay = document.querySelector('.stats-item:first-child .stats-value');
+                if (!currentBtcBalanceDisplay) { // Add a check just in case
+                     console.error('BTC balance element not found.');
+                     return;
+                }
+                try {
+                    const currentBtcText = currentBtcBalanceDisplay.textContent;
+                    const currentBtcValue = parseFloat(currentBtcText.replace(' BTC', ''));
+                    if (!isNaN(currentBtcValue)) {
+                        const newBtcValue = currentBtcValue + profitAmount;
+                        currentBtcBalanceDisplay.textContent = `${newBtcValue.toFixed(8)} BTC`;
+                    } else {
+                         console.error('Could not parse current BTC value:', currentBtcText);
+                    }
+                } catch (error) {
+                    console.error('Error adding profit:', error);
+                }
+            }
+
+            function handleButtonClick(targetButton) {
+                // Re-select energyDisplay and timerDisplay before using them
+                const currentEnergyDisplay = document.querySelector('.circular-button:first-child span');
+                const currentTimerDisplay = document.querySelector('.timer');
+
+                if (!currentEnergyDisplay || !currentTimerDisplay) { // Add a check just in case
+                     console.error('Energy or Timer element not found.');
+                     return;
+                }
+
+                if (targetButton.textContent === 'Start Mining') {
+                    // Check and consume energy before starting
+                    const energyText = currentEnergyDisplay.textContent;
+                    const energyMatch = energyText.match(/^(\d+(\.\d+)?)(?:kw)?\/(\d+(\.\d+)?)(?:kw)?$/);
+
+                    if (energyMatch) {
+                        let currentEnergy = parseFloat(energyMatch[1]);
+                        const maxEnergy = parseFloat(energyMatch[3]);
+
+                        if (!isNaN(currentEnergy) && currentEnergy >= energyCostPerSession) {
+                            // Deduct energy
+                            currentEnergy -= energyCostPerSession;
+                            // Update energy display
+                            currentEnergyDisplay.textContent = `${currentEnergy.toFixed(2)}kw/${maxEnergy}kw`;
+
+                            // Start Mining
+                            targetButton.disabled = true;
+                            targetButton.textContent = 'Mining...';
+                            currentTimerDisplay.style.visibility = 'visible';
+
+                            timeRemaining = miningDuration;
+                            // Use a local variable for interval and clear it correctly
+                            let currentMiningInterval = setInterval(() => {
+                                timeRemaining--;
+                                // Make sure to update the correct timer display
+                                if (document.querySelector('.timer')){
+                                     document.querySelector('.timer').textContent = formatTime(timeRemaining);
+                                }
+
+
+                                if (timeRemaining <= 0) {
+                                    clearInterval(currentMiningInterval); // Clear the current interval
+                                    targetButton.disabled = false; // Enable button
+                                    targetButton.textContent = 'Claim'; // Change text to Claim
+                                    if (document.querySelector('.timer')){
+                                         document.querySelector('.timer').style.visibility = 'hidden'; // Hide timer
+                                    }
+                                }
+                            }, 1000);
+                            // Store the interval ID in the outer scope to clear it later if needed (e.g., on screen change)
+                             miningInterval = currentMiningInterval;
+
+                        } else {
+                            // Insufficient energy
+                            alert('Недостаточно энергии для майнинга!');
+                        }
+                    } else {
+                         console.error('Could not parse energy value:', energyText);
+                         alert('Ошибка определения количества энергии.');
+                    }
+                } else if (targetButton.textContent === 'Claim') {
+                    // Claim Profit
+                    addProfit();
+                    targetButton.textContent = 'Start Mining';
+                }
+                // If text is 'Mining...', do nothing (button is disabled)
+            }
+
+            // Initial display setup
+            if (timerDisplay) {
+                 timerDisplay.textContent = formatTime(miningDuration);
+                 timerDisplay.style.visibility = 'hidden'; // Initially hide timer
+            }
+
+            // Use event delegation for the start mining button
+             const appMain = document.querySelector('.app-main');
+
+             if (appMain) {
+                 appMain.addEventListener('click', (event) => {
+                     const targetButton = event.target.closest('.start-mining-button');
+                     if (targetButton) {
+                         handleButtonClick(targetButton);
+                     }
+                 });
+             }
+
+            // Store the initial HTML of app-main
+            const initialAppMainContent = appMain ? appMain.innerHTML : '';
+
+            // Add event listener to the Store button
+            const storeButton = document.querySelector('.bottom-nav__link i.fas.fa-store').closest('a');
+
+            if (storeButton && appMain) {
+                storeButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent default link behavior
+
+                    console.log('Store button clicked!'); // Log when Store button is clicked
+
+                    // Before changing content, clear any running mining interval
+                    if (miningInterval) {
+                        clearInterval(miningInterval);
+                        console.log('Mining interval cleared (Store).'); // Log when interval is cleared for Store
+                    }
+
+                    // Generate HTML for the Store screen
+                    const storeScreenHTML = `
+                        <div class="store-filter-bar">
+                            <button class="filter-button active">Premium</button>
+                            <button class="filter-button">ASICs</button>
+                            <button class="filter-button">ECOS Points</button>
+                            <button class="filter-button">Energy</button>
+                            <button class="filter-button">Boosts</button>
+                            <button class="filter-button">Land</button>
+                            <button class="filter-button">Datacenter</button>
+                            <button class="filter-button">EnergyStation</button>
+                        </div>
+                        <div id="store-content-area">
+                            <!-- Content below filter bar will be loaded here based on filter selection -->
+                        </div>
+                    `;
+
+                    appMain.innerHTML = storeScreenHTML; // Replace content with filter bar and content area
+                    console.log('appMain content set for Store:', appMain.innerHTML); // Log the content being set
+
+                    // Get the content area element
+                    const storeContentArea = appMain.querySelector('#store-content-area');
+
+                    // Function to load content based on filter
+                    const loadStoreContent = (filterType) => {
+                        let contentHTML = '';
+                        if (filterType === 'Premium') {
+                            contentHTML = `
+                                <div class="store-subfilter">
+                                     <button class="store-subfilter__button active">TON</button>
+                                     <button class="store-subfilter__button">Stars</button>
+                                </div>
+                                <div class="store-item-slots">
+                                    <div class="store-item-slot">
+                                        <div class="item-image-placeholder"></div>
+                                        <div class="item-text">Premium 7 days</div>
+                                        <button class="buy-button">Buy</button>
+                                    </div>
+                                    <div class="store-item-slot">
+                                        <div class="item-image-placeholder"></div>
+                                        <div class="item-text">Premium 15 days</div>
+                                        <button class="buy-button">Buy</button>
+                                    </div>
+                                    <div class="store-item-slot">
+                                        <div class="item-image-placeholder"></div>
+                                        <div class="item-text">Premium 30 days</div>
+                                        <button class="buy-button">Buy</button>
+                                    </div>
+                                </div>
+                            `;
+                        } else if (filterType === 'ASICs') {
+                             const asicAmounts = [1, 20, 50, 100, 200, 500, 1000, 5000];
+                             const asicPrices = [6250, 125000, 312500, 625000, 1250000, 3125000, 6250000, 12500000]; // Prices in ECOS Points
+                             let asicSlotsHTML = '';
+                             asicAmounts.forEach((amount, index) => {
+                                 const price = asicPrices[index];
+                                 asicSlotsHTML += `
+                                     <div class="store-item-slot">
+                                         <div class="item-image-placeholder"></div>
+                                         <div class="item-text">${amount} ASIC</div>
+                                         <div class="item-price">${price} ECOS Points</div>
+                                         <button class="buy-button">Buy</button>
+                                     </div>
+                                 `;
+                             });
+                             contentHTML = `<div class="store-item-slots">${asicSlotsHTML}</div>`;
+                        } else {
+                            contentHTML = `<h2>${filterType} Content</h2><p>Content for ${filterType} will go here.</p>`;
+                        }
+                        if (storeContentArea) {
+                             storeContentArea.innerHTML = contentHTML;
+                             console.log(`Content loaded for filter: ${filterType}`);
+                        }
+                    };
+
+                    // Load default content (Premium) when Store screen opens
+                    loadStoreContent('Premium');
+
+                    // Add event listeners to filter buttons using delegation on appMain
+                     appMain.addEventListener('click', (event) => {
+                         const filterButton = event.target.closest('.filter-button');
+                         if (filterButton) {
+                             // Remove active class from all filter buttons
+                             appMain.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
+                             // Add active class to the clicked button
+                             filterButton.classList.add('active');
+                             // Load content based on the clicked filter's text
+                             loadStoreContent(filterButton.textContent);
+                         }
+
+                         // Add event listener for subfilter buttons (TON/Stars) using delegation
+                          const subfilterButton = event.target.closest('.store-subfilter__button');
+                          if (subfilterButton) {
+                               // Handle subfilter click (e.g., update active class for subfilter buttons)
+                              console.log(`Subfilter button clicked: ${subfilterButton.textContent}`);
+                               // Remove active class from all subfilter buttons
+                              appMain.querySelectorAll('.store-subfilter__button').forEach(btn => btn.classList.remove('active'));
+                               // Add active class to the clicked subfilter button
+                              subfilterButton.classList.add('active');
+                               // Add logic here to filter items based on subfilter
+                          }
+
+                         // Add event listener for Buy buttons using delegation
+                          const buyButton = event.target.closest('.buy-button');
+                          if (buyButton) {
+                              // Handle buy button click
+                             const itemSlot = buyButton.closest('.store-item-slot');
+                             const itemText = itemSlot ? itemSlot.querySelector('.item-text').textContent : 'Unknown Item';
+                              console.log(`Buy button clicked for item: ${itemText}`);
+                               // Add your purchase logic here
+                               alert(`Покупка: ${itemText}`);
+                          }
+                     });
+
+
+                    // Optionally update active class for navigation links
+                    document.querySelectorAll('.bottom-nav__link').forEach(link => link.classList.remove('bottom-nav__link--active'));
+                    storeButton.classList.add('bottom-nav__link--active');
+                    console.log('Active class updated for Store button.');
+
+                    // Clear references to old elements (these might be re-selected within loadStoreContent if needed)
+                    startMiningButton = null;
+                    timerDisplay = null;
+                    // btcBalanceDisplay and energyDisplay are re-selected in their functions
+                });
+            }
+
+            // Add event listener to the Home button to switch back to home content
+            const homeButton = document.querySelector('.bottom-nav__link i.fas.fa-home').closest('a');
+
+            if (homeButton && appMain && initialAppMainContent) {
+                 homeButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent default link behavior
+
+                    console.log('Home button clicked!'); // Log when Home button is clicked
+                    console.log('Initial appMain content stored:', initialAppMainContent); // Log the stored content
+
+                    // Before restoring content, clear any running mining interval
+                    if (miningInterval) {
+                        clearInterval(miningInterval);
+                        console.log('Mining interval cleared.'); // Log when interval is cleared
+                    }
+                    // Restore the initial app-main content
+                    appMain.innerHTML = initialAppMainContent;
+                    console.log('appMain content restored.'); // Log after restoring content
+
+                    // Re-select elements and update outer scope references
+                    startMiningButton = appMain.querySelector('.start-mining-button');
+                    timerDisplay = appMain.querySelector('.timer');
+                    // btcBalanceDisplay and energyDisplay will be re-selected within their functions
+
+                    console.log('startMiningButton after restore:', startMiningButton); // Log re-selected startMiningButton
+                    console.log('timerDisplay after restore:', timerDisplay); // Log re-selected timerDisplay
+
+                    // Ensure timer visibility is correct after restoring
+                    if (startMiningButton && timerDisplay) { // Add checks
+                         if (startMiningButton.textContent !== 'Mining...') {
+                             timerDisplay.style.visibility = 'hidden';
+                             console.log('Timer visibility set to hidden.');
+                         } else {
+                              timerDisplay.style.visibility = 'visible';
+                              console.log('Timer visibility set to visible.');
+                         }
+                         updateTimerDisplay(); // Update timer display with current timeRemaining
+                         console.log('Timer display updated.');
+                    }
+
+                    // Optionally update active class for navigation links
+                    document.querySelectorAll('.bottom-nav__link').forEach(link => link.classList.remove('bottom-nav__link--active'));
+                    homeButton.classList.add('bottom-nav__link--active');
+                    console.log('Active class updated for Home button.');
+
+                 });
+            }
+
+             // Initialize active class on page load
+            const activeLink = document.querySelector('.bottom-nav__link--active');
+            if (activeLink) {
+                activeLink.classList.remove('bottom-nav__link--active');
+            }
+            // Find the Home button again after potential content changes (though it shouldn't change here)
+             const initialHomeButton = document.querySelector('.bottom-nav__link i.fas.fa-home').closest('a');
+             if(initialHomeButton) {
+                initialHomeButton.classList.add('bottom-nav__link--active');
+             }
+
+            // Add event listener to the Stat button
+            const statButton = document.querySelector('.bottom-nav__link i.fas.fa-chart-line').closest('a');
+
+            if (statButton && appMain) {
+                statButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent default link behavior
+                    // Before changing content, clear any running mining interval
+                    if (miningInterval) {
+                        clearInterval(miningInterval);
+                    }
+                    appMain.innerHTML = '<h2>Stat Screen Content</h2><p>This is where the statistics content will go.</p>'; // Replace content
+                    // Optionally update active class for navigation links
+                    document.querySelectorAll('.bottom-nav__link').forEach(link => link.classList.remove('bottom-nav__link--active'));
+                    statButton.classList.add('bottom-nav__link--active');
+
+                    // Clear references to elements that are not on the stat screen
+                    startMiningButton = null;
+                    timerDisplay = null;
+                     // btcBalanceDisplay and energyDisplay might be needed on stat screen, depending on content
+                     // For now, clear their references to be safe
+                    btcBalanceDisplay = null;
+                    energyDisplay = null;
+
+                });
+            }
+
+            // Add event listener to the Earn button
+            const earnButton = document.querySelector('.bottom-nav__link i.fas.fa-coins').closest('a');
+
+            if (earnButton && appMain) {
+                earnButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent default link behavior
+                     // Before changing content, clear any running mining interval
+                    if (miningInterval) {
+                        clearInterval(miningInterval);
+                    }
+                    appMain.innerHTML = '<h2>Earn Screen Content</h2><p>This is where the earn content will go.</p>'; // Replace content
+                    // Optionally update active class for navigation links
+                    document.querySelectorAll('.bottom-nav__link').forEach(link => link.classList.remove('bottom-nav__link--active'));
+                    earnButton.classList.add('bottom-nav__link--active');
+
+                     // Clear references to elements that are not on the earn screen
+                    startMiningButton = null;
+                    timerDisplay = null;
+                    btcBalanceDisplay = null;
+                    energyDisplay = null;
+
+                });
+            }
+
+            // Add event listener to the Wallet button
+            const walletButton = document.querySelector('.bottom-nav__link i.fas.fa-wallet').closest('a');
+
+            if (walletButton && appMain) {
+                walletButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent default link behavior
+                     // Before changing content, clear any running mining interval
+                    if (miningInterval) {
+                        clearInterval(miningInterval);
+                    }
+                    appMain.innerHTML = `
+                        <div class="store-filter-bar">
+                            <button class="filter-button">Premium</button>
+                            <button class="filter-button">ASICs</button>
+                            <button class="filter-button">ECOS Points</button>
+                            <button class="filter-button">Energy</button>
+                            <button class="filter-button">Boosts</button>
+                            <button class="filter-button">Land</button>
+                            <button class="filter-button">Datacenter</button>
+                            <button class="filter-button">EnergyStation</button>
+                        </div>
+                        <h2>Store Screen Content</h2>
+                        <p>This is where the store content will go.</p>
+                    `; // Replace content
+                    // Optionally update active class for navigation links
+                    document.querySelectorAll('.bottom-nav__link').forEach(link => link.classList.remove('bottom-nav__link--active'));
+                    walletButton.classList.add('bottom-nav__link--active');
+
+                     // Clear references to elements that are not on the wallet screen
+                    startMiningButton = null;
+                    timerDisplay = null;
+                    btcBalanceDisplay = null;
+                    energyDisplay = null;
+
+                });
+            }
+
+        });
+    </script>
 </body>
 </html> 
